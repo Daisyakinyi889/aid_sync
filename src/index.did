@@ -1,0 +1,50 @@
+type Donation = record {
+  id : text;
+  updated_at : opt nat64;
+  donorId : text;
+  date : text;
+  campaignId : nat64;
+  amount : nat64;
+  created_date : nat64;
+};
+type DonationPayload = record {
+  donorId : text;
+  date : text;
+  campaignId : nat64;
+  amount : nat64;
+};
+type Donor = record {
+  id : text;
+  updated_at : opt nat64;
+  name : text;
+  email : text;
+  feedbacks : vec text;
+  donor_type : text;
+  donation_history : vec text;
+  created_date : nat64;
+};
+type DonorPayload = record { name : text; email : text; donor_type : text };
+type _AzleResult = variant { Ok : Donation; Err : text };
+type _AzleResult_1 = variant { Ok : Donor; Err : text };
+type _AzleResult_2 = variant { Ok : vec Donation; Err : text };
+type _AzleResult_3 = variant { Ok : vec Donor; Err : text };
+type _AzleResult_4 = variant { Ok : vec text; Err : text };
+type _AzleResult_5 = variant { Ok : float64; Err : text };
+service : () -> {
+  addDonation : (DonationPayload) -> (_AzleResult);
+  add_Donor : (DonorPayload) -> (_AzleResult_1);
+  deleteDonation : (text) -> (_AzleResult);
+  deleteDonor : (text) -> (_AzleResult_1);
+  donorToAddFeedback : (text, text) -> (_AzleResult_1);
+  getAllDonations : () -> (_AzleResult_2) query;
+  getAllDonors : () -> (_AzleResult_3) query;
+  getDonation : (text) -> (_AzleResult) query;
+  getDonationHistory : (text) -> (_AzleResult_4) query;
+  getDonor : (text) -> (_AzleResult_1) query;
+  getFeedbacks : (text) -> (_AzleResult_4) query;
+  getTotalDonation : (text) -> (_AzleResult_5) query;
+  insertDonationHistory : (text, text) -> (_AzleResult_1);
+  totalDonation : () -> (_AzleResult_5) query;
+  updateDonation : (text, DonationPayload) -> (_AzleResult);
+  updateDonor : (text, DonorPayload) -> (_AzleResult_1);
+}

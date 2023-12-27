@@ -1,0 +1,15 @@
+{
+    "canisters": {
+        "aid_sync": {
+            "type": "custom",
+            "ts": "src/index.ts",
+            "root": "src",
+            "main": "src/index.ts",
+            "candid": "src/index.did",
+            "build": "npx azle aid_sync",
+            "wasm": ".azle/aid_sync/aid_sync.wasm",
+            "gzip": true
+        }
+    }
+}
+
